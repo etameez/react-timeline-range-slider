@@ -24,6 +24,7 @@ import './styles/index.scss'
 const getTimelineConfig = (timelineStart, timelineLength) => (date) => {
   const percent = differenceInMilliseconds(date, timelineStart)/timelineLength * 100
   const value = Number(format(date, 'T'))
+  console.log('gtlc', percent, value)
   return { percent, value }
 }
 
@@ -44,7 +45,7 @@ const getFormattedBlockedIntervals = (blockedDates = [], [startTime, endTime]) =
 
     return { id: `blocked-track-${index}`, source, target }
   })
-
+  console.log('gfbi', formattedBlockedDates)
   return formattedBlockedDates
 }
 
@@ -54,7 +55,7 @@ const getNowConfig = ([startTime, endTime])  => {
 
   const source = getConfig(new Date())
   const target = getConfig(addMinutes(new Date(), 1))
-
+console.log('gnc', source, target)
   return { id: 'now-track', source, target }
 }
 
@@ -123,7 +124,7 @@ class TimeRange extends React.Component {
     const domain = timelineInterval.map(t => Number(t))
 
     const disabledIntervals = this.disabledIntervals
-
+    console.log('i am in the matrix')
     return (
       <div className={containerClassName || 'react_time_range__time_range_container' }>
         <Slider
